@@ -1,0 +1,58 @@
+<h1>Create your card set here!</h1>
+<table>
+  <tr>
+    <th>#</th>
+    <th>Question</th>
+    <th>Answer</th>
+  </tr>
+<tr *ngFor="let card of tempCard; let i = index">
+  <td>{{i + 1}}</td>
+  <td>{{card.question}}</td>
+  <td>{{card.answer}}</td>
+  <button (click) = "RemoveCard(i)">Remove</button>
+  <button (click) = "editCard(i, card.question, card.answer)">Edit</button>
+</tr>
+ 
+</table> 
+<form [formGroup] = "cardBuilderForm" (ngSubmit) = "onSubmit()" >
+  <label>
+    Question: 
+    <input #question type="text" [(ngModel)] = 'cardStore.question'
+    placeholder="Enter your question here"
+    formControlName ="question" required>
+  </label>
+  <label>
+    Answer:
+    <input #answer type="text" [(ngModel)] = 'cardStore.answer' 
+    placeholder="Enter the answer here"
+    formControlName = "answer" required>
+  </label>
+  <div>
+    <button *ngIf="isTrue()" (click) = "addCard(question.value, answer.value)">Submit Card</button>
+    <button *ngIf = "isEdit()" (click) = "submitEdit(question.value, answer.value)">Save Edit</button>
+  </div>
+ </form>
+<form [formGroup] = "subjectForm" (ngSubmt) = "onSubmit2()">
+  <label>
+    Subject:
+    <input #subject type="text"
+    placeholder="Enter a subject here"
+    formControlName = "subject" required
+    >
+  </label>
+  <div>
+    <button  (click) = "addNewCard(subject.value)" >Submit new Quiz</button>
+  </div>
+</form>
+<table>
+  <tr>
+    <th>#</th>
+    <th>Subject</th>
+  </tr>
+  <tr *ngFor = "let cards of getCreatedCards(); let i = index">
+    <td>{{i + 1}}</td>
+    <td>{{cards.subject}}</td>
+    <button (click)="openSet(i)">Open set of cards</button>
+    <button (click)="removeCardSet(i)">Delete</button>
+  </tr>
+</table>

@@ -1,0 +1,65 @@
+
+label {
+    display: block;
+    width: 10em;
+    margin: 1.5em 0;
+    color: black ;
+    font-weight: bold;
+    border-color: black;
+  }
+  
+input {
+    height: 2em;
+    font-size: 1em;
+    padding-left: .4em;
+    color: black;
+    background-color:white  ;
+    
+  }
+  ::placeholder {
+      color: grey;
+  }
+  
+button {
+    font-family: Arial;
+    background-color: black;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: whitesmoke;
+  }
+button:hover {
+    background-color:lightblue;
+  }
+  h1 {
+    color:black;
+}
+table {
+    color: black;
+    background-color: whitesmoke;
+    
+}
+h2 {
+    color: red;
+    border-bottom: solid;
+    border-color: black;
+}
+ td {
+   border-radius: 1em;
+   border-style: solid;
+   border-color: black;
+   padding-right: 2rem;
+   padding-left: 2rem;
+}
+.card {
+  border-radius: 1em;
+   border-style: solid;
+   border-color: black;
+   padding-right: .5rem;
+   padding-left: .5rem;
+} 
+.spacing {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}

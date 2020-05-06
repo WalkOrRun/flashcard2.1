@@ -1,0 +1,12 @@
+
+<nav>
+  <a (click) = "toggleEditor('create')"> Create quiz</a>
+  <a (click) = "toggleEditor('indiviual')"> Study Cards Individually </a>
+  <a (click) = "toggleEditor('list')">Study List of Cards </a>
+  <a (click) = "toggleEditor('login')">Login</a>
+</nav>
+<app-create-set *ngIf = "showCreate"> </app-create-set>
+<app-single-card *ngIf = "showIndiviual"></app-single-card>
+<app-view-subject *ngIf="showList"></app-view-subject>
+<app-login *ngIf="showLogin"></app-login> 
+
