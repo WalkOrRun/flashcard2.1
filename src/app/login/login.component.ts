@@ -4,6 +4,7 @@ import { FormGroup, FormControl} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AccountService} from '../account.service';
 import { Account} from '../Account';
+import {Router } from '@angular/router';
 
 export type RouteTo = 'createAccount' | 'homeScreen';
 
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   password:string;
   message:string;
   accounts: Account[]=[];
-  constructor(private accService: AccountService) { }
+  constructor(private accService: AccountService,private router: Router) { }
   
   ngOnInit() {
     this.fetchData();
@@ -39,7 +40,8 @@ export class LoginComponent implements OnInit {
         this.message='login successful, hello '+this.name;
         this.name = '';
         this.password ='';
-        this.toggleEditor('homeScreen');
+        //this.toggleEditor('homeScreen');
+        this.router.navigate(['/home']);
         return;
         
       }

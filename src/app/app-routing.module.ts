@@ -14,10 +14,7 @@ const routes: Routes = [
 ]; // sets up routes constant where you define your Routes
 
 @NgModule({
-  declarations: [ 
-    LoginComponent, HomeScreenComponent, CreateAccountComponent, CreateSetComponent, 
-    SingleCardComponent, ViewSubjectComponent
-  ],
+  
   imports: [
     RouterModule.forRoot([
       { path: '', redirectTo: 'login', pathMatch: 'full' },

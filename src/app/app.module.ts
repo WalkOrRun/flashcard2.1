@@ -14,11 +14,12 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import {SingleCardComponent} from './single-card/single-card.component';
 import {HttpClientModule} from '@angular/common/http';
 import { HomeScreenComponent } from './home-screen/home-screen.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, ReactiveFormsModule,HttpClientModule ],
+  imports:      [ BrowserModule, FormsModule, ReactiveFormsModule,HttpClientModule,AppRoutingModule ],
   declarations: [ AppComponent, HelloComponent, LoginComponent, CreateSetComponent, ViewSubjectComponent, CreateAccountComponent, SingleCardComponent, HomeScreenComponent ],
   bootstrap:    [ AppComponent ],
   providers: [SetService, CardService, AccountService]
