@@ -1,65 +1,51 @@
+p {
+  font-family: Lato;
+}
+/* Global Styles */
+/* Some Style cames from the editor in the help link */
 
-label {
-    display: block;
-    width: 10em;
-    margin: 1.5em 0;
-    color: black ;
-    font-weight: bold;
-    border-color: black;
+  body {
+    margin: 2em;
   }
-  
-input {
-    height: 2em;
-    font-size: 1em;
-    padding-left: .4em;
-    color: black;
-    background-color:white  ;
-    
+  a {
+    cursor: pointer;
+    cursor: hand;
   }
-  ::placeholder {
-      color: grey;
-  }
-  
-button {
+  button {
     font-family: Arial;
-    background-color: black;
+    background-color: #eee;
     border: none;
     padding: 5px 10px;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    color: whitesmoke;
+    cursor: hand;
   }
-button:hover {
-    background-color:lightblue;
+  button:hover {
+    background-color: #cfd8dc;
+  }  
+  /* Navigation link styles */
+nav a {
+  padding: 5px 10px;
+  text-decoration: none;
+  margin-right: 10px;
+  margin-top: 10px;
+  display: inline-block;
+  background-color: #eee;
+  border-radius: 4px;
+}
+nav a:visited, a:link {
+  color: #607D8B;
+}
+nav a:hover {
+  color: #039be5;
+  background-color: #CFD8DC;
+}
+nav a.active {
+  color: #039be5;
+}
+  
+  /* everywhere else */
+  * {
+    font-family: Arial, Helvetica, sans-serif;
   }
-  h1 {
-    color:black;
-}
-table {
-    color: black;
-    background-color: whitesmoke;
-    
-}
-h2 {
-    color: red;
-    border-bottom: solid;
-    border-color: black;
-}
- td {
-   border-radius: 1em;
-   border-style: solid;
-   border-color: black;
-   padding-right: 2rem;
-   padding-left: 2rem;
-}
-.card {
-  border-radius: 1em;
-   border-style: solid;
-   border-color: black;
-   padding-right: .5rem;
-   padding-left: .5rem;
-} 
-.spacing {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
+  
