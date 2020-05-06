@@ -15,6 +15,7 @@ export type RouteTo = 'createAccount' | 'homeScreen';
 })
 export class LoginComponent implements OnInit {
 
+  public static username:string;
   name:string;
   password:string;
   message:string;
@@ -38,9 +39,8 @@ export class LoginComponent implements OnInit {
       if((this.name==this.accounts[i].name)&&(this.password==this.accounts[i].password)){
         document.cookie = "username=" + this.name + ";";
         this.message='login successful, hello '+this.name;
-        this.name = '';
-        this.password ='';
         //this.toggleEditor('homeScreen');
+        LoginComponent.username=name;
         this.router.navigate(['/home']);
         return;
         
