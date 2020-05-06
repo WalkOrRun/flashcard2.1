@@ -28,26 +28,30 @@ export class SingleCardComponent implements OnInit {
   questionCard : Card[] = [];
   max : number;
   storeIndex : number = 0;
+  showCardAnswer : boolean[] = [];
+  temp : boolean = false;
   
   getCards() {
     return this.cardService.getMyCreatedSets();
   }
   displayQuestion(index : number) {
-     this.tempCard[index].question;
-     this.tempCard[index].marked = false;
+     this.showCardAnswer[index] = false;
   }
   displayAnswer(index : number) {
-    this.tempCard[index].answer;
-    this.tempCard[index].marked = true;
+    this.showCardAnswer[index]= true;
   }
   OpenSubject(index : number) {
+    this.showCardAnswer = [];
     this.cardSet = this.cardService.getCardSet(index);
     this.tempCard = this.cardSet.Card;
     this.questionCard.push(this.tempCard[0]);
+    for(let card of this.cardSet.Card) {
+      this.showCardAnswer.push(this.temp);
+    }
   }
   isVisable(index : number) {
     if(this.tempCard.length !== 0) {
-      return this.tempCard[index].marked;
+      return this.showCardAnswer[index];
     }
     else {
       return false;
@@ -55,7 +59,7 @@ export class SingleCardComponent implements OnInit {
   }
   notVisable(index : number) {
     if(this.tempCard.length !== 0) {
-    return this.tempCard[index].marked !== true;
+    return this.showCardAnswer[index] !== true;
     }
     else {
       return false;
@@ -73,7 +77,7 @@ export class SingleCardComponent implements OnInit {
   }
   nextQuestion(index : number) {
     if(this.tempCard.length != 0) {
-      if (index !== this.tempCard.length){
+      if (index !== this.tempCard.length - 1){
         this.questionCard[0] = this.tempCard[index + 1]
         this.storeIndex = index + 1;
       }

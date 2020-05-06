@@ -6,6 +6,12 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { CreateSetComponent } from './create-set/create-set.component';
 import { SingleCardComponent } from './single-card/single-card.component';
 import { ViewSubjectComponent } from './view-subject/view-subject.component';
+import { Routes} from '@angular/router'; // CLI imports router
+
+const routes: Routes = [
+  { path: 'home-component', component: HomeScreenComponent },
+  { path: 'login-component', component: LoginComponent },
+]; // sets up routes constant where you define your Routes
 
 @NgModule({
   declarations: [ 
