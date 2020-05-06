@@ -49,6 +49,9 @@ export class LoginComponent implements OnInit {
       
     }
   }
+  newaccount(){
+    this.router.navigate(['/newaccount']);
+  }
 
   routing : RouteTo;
 

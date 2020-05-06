@@ -19,7 +19,8 @@ const routes: Routes = [
     RouterModule.forRoot([
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
-      { path: 'home', component: HomeScreenComponent }
+      { path: 'home', component: HomeScreenComponent },
+      { path: 'newaccount', component: CreateAccountComponent}
       
     ])
   ],
