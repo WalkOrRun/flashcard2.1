@@ -52,6 +52,6 @@
   <tr *ngFor = "let cards of getCreatedCards(); let i = index">
     <td>{{i + 1}}</td>
     <td>{{cards.subject}}</td>
-    <button (click)="openSet(i)">Open set of cards</button>
+    <button (click)="openSet()">Open set of cards</button>
   </tr>
 </table>

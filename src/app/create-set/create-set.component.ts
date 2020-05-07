@@ -24,12 +24,19 @@ export class CreateSetComponent implements OnInit {
   })
   tempCard : Card[] = [];
   newCardSet : newCardSets = { 
+    setID : this.setid,
     subject : '',
-    accountname : LoginComponent.username,
-    setID : this.setid
+    accountname : LoginComponent.username
 }
 //Stores a card for editing
   cardStore : Card = {
+    question : '',
+    answer : '',
+    marked : false,
+    cardID : 1,
+    setID : this.setid
+  }
+    blackCard : Card = {
     question : '',
     answer : '',
     marked : false,
@@ -54,7 +61,7 @@ export class CreateSetComponent implements OnInit {
       if(LoginComponent.username === cardSet.accountname) {
         this.cardSets.push(cardSet);
       }
-    };
+    }
     return this.cardSets;
     }
     catch(Exception) {
@@ -70,7 +77,7 @@ export class CreateSetComponent implements OnInit {
     accountname : LoginComponent.username,
     setID : this.setid
     }
-    for(let card of this.cards) {
+    for(let card of this.tempCard) {
         this.cardService.addQuizQuestion(card as Card)
     }
     this.cardService.addCreatedCardSet(this.newCardSet);
@@ -96,8 +103,8 @@ export class CreateSetComponent implements OnInit {
   onSubmit2() {
     console.warn(this.subjectForm.value);    
   }
-  openSet(index : number) {
-    this.newCardSet = this.cardService.getCardSet(index);
+  openSet() {
+    
     
     
   }
@@ -112,8 +119,10 @@ export class CreateSetComponent implements OnInit {
     }
     this.tempCard[this.storeNum] = this.cardStore;
     this.editBoolean = true;
+    this.cardStore = this.blackCard;
     this.storeNum = 0;
     this.addBoolean = false;
+    this.cardBuilderForm.reset;
   }
   isTrue() {
     return this.editBoolean;
