@@ -49,12 +49,17 @@ export class CreateSetComponent implements OnInit {
     this.cardBuilderForm.reset();
   }
   getCreatedCards() {
+    try {
     for(let cardSet of this.cardService.getAllSets()) {
       if(LoginComponent.username === cardSet.accountname) {
         this.cardSets.push(cardSet);
       }
     };
     return this.cardSets;
+    }
+    catch(Exception) {
+
+    }
   }
   changeSubject(subject: string) {
     this.newCardSet.subject = subject;
