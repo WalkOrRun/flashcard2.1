@@ -23,7 +23,7 @@ export class CreateSetComponent implements OnInit {
   newCardSet : CardSet = { 
     Card : this.tempCard,
     subject : '',
-    accountID : 1,
+    accountname : LoginComponent.username,
     setID : 1
 }
 //Stores a card for editing
@@ -53,7 +53,7 @@ export class CreateSetComponent implements OnInit {
     this.newCardSet = {
       Card : this.tempCard,
       subject : subjectS,
-    accountID : 1,
+    accountname : LoginComponent.username,
     setID : 1
     }
     this.cardService.addCreatedCardSet(this.newCardSet);
