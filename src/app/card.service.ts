@@ -71,10 +71,12 @@ getAllCards(){
 
 // get new set id
 getSetId(){
+  if(!Array.isArray(this.getAllSets()) || !this.getAllSets().length) return 0;
   return this.getAllSets.length +1;
 }
 // get new card id
 getCardId(){
+  if(!Array.isArray(this.getAllCards()) || !this.getAllCards().length) return 0;
   return this.getAllCards.length+1;
 }
 //addQuizQuestion(quiz: Card) {
