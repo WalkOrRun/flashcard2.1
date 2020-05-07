@@ -4,36 +4,22 @@ import { CardSet } from './Cardset';
 import { CARDS } from './Mock-Quiz';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
+import {newCardSets} from './newCardSets';
 
 @Injectable()
 export class CardService {
 
-blankCards : Card[] = [ {
-  cardID : 1,
-  question : '',
-  answer : '',
-  marked : false,
-  setID : 1
-}];
-cardsets : CardSet[] = [ {
-  Card : this.blankCards,
-  subject : '',
-  accountname : '',
-  setID : 1
-}];
-
-quizs = CARDS;
 constructor(private http: HttpClient) { }
-addCreatedCardSet(cardSet : CardSet) {
+addCreatedCardSet(cardSet : newCardSets) {
     //this.cardsets.push(cardSet);
     return this.http.post('https://flashcarddata-ad85d.firebaseio.com/'+'cardSet.json',cardSet);
 }
 // put all set observable in database to an array
 getAllSetsObs() {
-   return this.http.get<CardSet[]>('https://flashcarddata-ad85d.firebaseio.com/'+ 'cardSet.json')
+   return this.http.get<newCardSets[]>('https://flashcarddata-ad85d.firebaseio.com/'+ 'cardSet.json')
     .pipe(map(responseData => {
       console.log(responseData);
-      const setArray: CardSet[] = [];
+      const setArray: newCardSets[] = [];
       for(const key in responseData){
         setArray.push(responseData[key]);
       }
@@ -42,7 +28,7 @@ getAllSetsObs() {
 }
 // return all cardset to an array
 getAllSets(){
-  var setArray: CardSet[];
+  var setArray: newCardSets[];
   this.getAllSetsObs().subscribe(data => {
       setArray = data;
     });
@@ -91,17 +77,17 @@ addQuizQuestion(card: Card){
 
 //get card set by setID
 getCardSet(setID : number) {
-  var setArray: CardSet[] = this.getAllSets()
+  var setArray: newCardSets[] = this.getAllSets()
   for(let set of setArray){
     if(set.setID==setID) return set;
   }
   return null;
   
 }
-removeCardSet(index : number) {
-  this.cardsets.splice(index,1);
-}
-search(index : number, subject : string) {
-      return subject === this.cardsets[index].subject;
-}
+//removeCardSet(index : number) {
+  //this.cardsets.splice(index,1);
+//}
+//search(index : number, subject : string) {
+      //return subject === this.cardsets[index].subject;
+//}
 }

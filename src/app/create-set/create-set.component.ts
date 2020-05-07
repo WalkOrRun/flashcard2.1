@@ -5,6 +5,7 @@ import { CardSet } from '../Cardset';
 import {CardService} from '../card.service';
 import { FormBuilder } from '@angular/forms';
 import {LoginComponent} from '../login/login.component';
+import {newCardSets} from '../newCardSets';
 @Component({
   selector: 'app-create-set',
   templateUrl: './create-set.component.html',
@@ -22,8 +23,7 @@ export class CreateSetComponent implements OnInit {
     subject : ['']
   })
   tempCard : Card[] = [];
-  newCardSet : CardSet = { 
-    Card : this.tempCard,
+  newCardSet : newCardSets = { 
     subject : '',
     accountname : LoginComponent.username,
     setID : this.setid
@@ -36,7 +36,7 @@ export class CreateSetComponent implements OnInit {
     cardID : 1,
     setID : this.setid
   }
-  cardSets: CardSet[] = [];
+  cardSets: newCardSets[] = [];
   storeNum : number;
   editBoolean : boolean = true;
   addBoolean : boolean = false;
@@ -66,12 +66,11 @@ export class CreateSetComponent implements OnInit {
   }
   addNewCard(subjectS : string) {
     this.newCardSet = {
-      Card : this.tempCard,
-      subject : subjectS,
+    subject : subjectS,
     accountname : LoginComponent.username,
     setID : this.setid
     }
-    for(let card of this.newCardSet.Card) {
+    for(let card of this.cards) {
         this.cardService.addQuizQuestion(card as Card)
     }
     this.cardService.addCreatedCardSet(this.newCardSet);
