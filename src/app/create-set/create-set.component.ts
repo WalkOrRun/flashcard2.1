@@ -57,11 +57,8 @@ export class CreateSetComponent implements OnInit {
   }
   getCreatedCards() {
     try {
-    for(let cardSet of this.cardService.getAllSets()) {
-      if(LoginComponent.username === cardSet.accountname) {
-        this.cardSets.push(cardSet);
-      }
-    }
+     this.cardSets = this.cardService.getAllSets();
+    
     return this.cardSets;
     }
     catch(Exception) {
@@ -75,12 +72,14 @@ export class CreateSetComponent implements OnInit {
     this.newCardSet = {
     subject : subjectS,
     accountname : LoginComponent.username,
-    setID : this.setid
+    setID : this.cardService.getSetId()
     }
-    for(let card of this.tempCard) {
-        this.cardService.addQuizQuestion(card as Card)
-    }
-    this.cardService.addCreatedCardSet(this.newCardSet as CardSet);
+    //for(let card of this.tempCard) {
+        //this.cardService.addQuizQuestion(card as Card)
+    //}
+    this.cardService.addCreatedCardSet(this.newCardSet as CardSet).subscribe(data => {
+      console.log(data);
+    });
     this.tempCard = []; 
     this.subjectForm.reset();
   }
