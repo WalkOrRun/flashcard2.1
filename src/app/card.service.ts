@@ -10,9 +10,9 @@ import {newCardSets} from './newCardSets';
 export class CardService {
 
 constructor(private http: HttpClient) { }
-addCreatedCardSet(cardSet : newCardSets) {
+addCreatedCardSet(newCardSets : newCardSets) {
     //this.cardsets.push(cardSet);
-    return this.http.post('https://flashcarddata-ad85d.firebaseio.com/'+'cardSet.json',cardSet);
+    return this.http.post('https://flashcarddata-ad85d.firebaseio.com/'+'cardSet.json', newCardSets);
 }
 // put all set observable in database to an array
 getAllSetsObs() {

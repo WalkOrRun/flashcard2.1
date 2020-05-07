@@ -98,12 +98,10 @@ export class CreateSetComponent implements OnInit {
   }
   openSet(index : number) {
     this.newCardSet = this.cardService.getCardSet(index);
-    this.tempCard = this.newCardSet.Card;
+    
     
   }
-  removeCardSet(index : number){
-    this.cardService.removeCardSet(index);
-  }
+
   submitEdit(question : string, answer : string) {
     this.cardStore = {
     question : question,
