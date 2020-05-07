@@ -80,7 +80,7 @@ export class CreateSetComponent implements OnInit {
     for(let card of this.tempCard) {
         this.cardService.addQuizQuestion(card as Card)
     }
-    this.cardService.addCreatedCardSet(this.newCardSet);
+    this.cardService.addCreatedCardSet(this.newCardSet as CardSet);
     this.tempCard = []; 
     this.subjectForm.reset();
   }
