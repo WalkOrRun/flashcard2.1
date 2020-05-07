@@ -28,8 +28,8 @@ addCreatedCardSet(cardSet : CardSet) {
     //this.cardsets.push(cardSet);
     return this.http.post('https://flashcarddata-ad85d.firebaseio.com/'+'cardSet.json',cardSet);
 }
-// put all set in database to an array
-getAllSets() {
+// put all set observable in database to an array
+getAllSetsObs() {
    return this.http.get<CardSet[]>('https://flashcarddata-ad85d.firebaseio.com/'+ 'cardSet.json')
     .pipe(map(responseData => {
       console.log(responseData);
@@ -40,8 +40,16 @@ getAllSets() {
       return setArray;
     }))
 }
-// put all card in database to an array
-getAllCards(){
+// return all cardset to an array
+getAllSets(){
+  var setArray: CardSet[];
+  this.getAllSetsObs().subscribe(data => {
+      setArray = data;
+    });
+  return setArray;
+}
+// put all card observable in database to an array
+getAllCardsObs(){
   return this.http.get<Card[]>('https://flashcarddata-ad85d.firebaseio.com/'+ 'card.json')
     .pipe(map(responseData => {
       console.log(responseData);
@@ -52,8 +60,22 @@ getAllCards(){
       return cardArray;
     }))
 }
+//return all cards to an card
+getAllCards(){
+  var cardArray: Card[];
+  this.getAllCardsObs().subscribe(data => {
+      cardArray = data;
+    });
+  return cardArray;
+}
+
+// get new set id
 getSetId(){
-  
+  return this.getAllSets.length +1;
+}
+// get new card id
+getCardId(){
+  return this.getAllCards.length+1;
 }
 //addQuizQuestion(quiz: Card) {
   //this.quizs.push(quiz);
@@ -64,8 +86,15 @@ addQuizQuestion(card: Card){
 //getQuizCards() {
 //  return this.quizs;
 //}
-getCardSet(index : number) {
-  return this.cardsets[index];
+
+//get card set by setID
+getCardSet(setID : number) {
+  var setArray: CardSet[] = this.getAllSets()
+  for(let set of setArray){
+    if(set.setID==setID) return set;
+  }
+  return null;
+  
 }
 removeCardSet(index : number) {
   this.cardsets.splice(index,1);
