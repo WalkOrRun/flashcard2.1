@@ -16,6 +16,8 @@ export class CreateSetComponent implements OnInit {
     question : [''],
     answer: ['']
   })
+  setid : number = this.cardService.getSetId();
+   
   subjectForm = this.fb.group ( {
     subject : ['']
   })
@@ -24,7 +26,7 @@ export class CreateSetComponent implements OnInit {
     Card : this.tempCard,
     subject : '',
     accountname : LoginComponent.username,
-    setID : 1
+    setID : this.setid
 }
 //Stores a card for editing
   cardStore : Card = {
@@ -32,11 +34,14 @@ export class CreateSetComponent implements OnInit {
     answer : '',
     marked : false,
     cardID : 1,
-    setID : 1
+    setID : this.setid
   }
+  cardSets: CardSet[] = [];
   storeNum : number;
   editBoolean : boolean = true;
   addBoolean : boolean = false;
+  cards : Card[] = [];
+  
 
 
   addCard(question : string, answer : string) {
@@ -44,7 +49,12 @@ export class CreateSetComponent implements OnInit {
     this.cardBuilderForm.reset();
   }
   getCreatedCards() {
-    return this.cardService.getMyCreatedSets();
+    for(let cardSet of this.cardService.getAllSets()) {
+      if(LoginComponent.username === cardSet.accountname) {
+        this.cardSets.push(cardSet);
+      }
+    };
+    return this.cardSets;
   }
   changeSubject(subject: string) {
     this.newCardSet.subject = subject;
@@ -54,7 +64,10 @@ export class CreateSetComponent implements OnInit {
       Card : this.tempCard,
       subject : subjectS,
     accountname : LoginComponent.username,
-    setID : 1
+    setID : this.setid
+    }
+    for(let card of this.newCardSet.Card) {
+        this.cardService.addQuizQuestion(card as Card)
     }
     this.cardService.addCreatedCardSet(this.newCardSet);
     this.tempCard = []; 
@@ -92,8 +105,8 @@ export class CreateSetComponent implements OnInit {
     question : question,
     answer : answer,
     marked : false,
-    cardID : 1,
-    setID : 1
+    cardID : this.cardService.getCardId(),
+    setID : this.setid
     }
     this.tempCard[this.storeNum] = this.cardStore;
     this.editBoolean = true;

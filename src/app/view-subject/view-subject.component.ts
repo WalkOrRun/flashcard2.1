@@ -4,6 +4,7 @@ import { CardSet } from '../Cardset';
 import {CardService} from '../card.service';
 import { FormBuilder } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-view-subject',
@@ -21,15 +22,15 @@ export class ViewSubjectComponent implements OnInit {
   cardSet : CardSet = {
     subject : '',
     Card : this.tempCard,
-    setID : 1,
-    accountID : 1
+    setID : this.cardService.getSetId(),
+    accountname : LoginComponent.username
   };
   subjectString : string;
   showCardAnswer : boolean[] = [];
   temp : boolean = false;
   
   getCards() {
-    return this.cardService.getMyCreatedSets();
+    return this.cardService.getCardSet();
   }
   displayQuestion(index : number) {
      this.showCardAnswer[index] = false;
